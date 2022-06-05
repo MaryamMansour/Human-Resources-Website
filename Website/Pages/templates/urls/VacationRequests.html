@@ -1,0 +1,178 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Vacation Requests</title>
+    <link rel="stylesheet" href="{%static 'CSS/VacationRequestsStyle.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital@1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5f8f029d02.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="{%static 'JS/VacationRequestsScript.js'%}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function load() {
+            $.ajax({
+                type: 'GET',
+                url: "{% url 'ReturnVacations' %}",
+                dataType: 'JSON',
+                success: function (response) {
+
+                    //console.log(response.vacations);
+                    $('#container').empty();
+                    for (var vacation in response.vacations) {
+                        var temp = '';
+                        temp = '<div class="card">' +
+                            '<div class="name">Name: <span>' + response.vacations[vacation].name + '</span></div>' +
+                            '<div class="reason">Reason: <span>' + response.vacations[vacation].reason + '</span></div>' +
+                            '<div class="start-date">From: <span>' + response.vacations[vacation].vacStart + '</span></div>' +
+                            '<div class="end-date">To: <span>' + response.vacations[vacation].vacEnd + '</span></div>' +
+                            '<div class="ID">Employee ID: <span>' + response.vacations[vacation].employee_id + '</span></div>' +
+                            '<div class="buttons">' +
+                            '<button class="grn-btn" value="' + response.vacations[vacation].employee_id + '">Approve</button>' +
+                            '<button class="red-btn" value="' + response.vacations[vacation].employee_id + '">Reject</button>' +
+                            '</div>' +
+                            '</div>';
+                        document.getElementById('container').innerHTML += temp;
+                    };
+                },
+                error: function (response) {
+                    alert('An error occured!')
+                }
+            }).then(function () {
+                setTimeout(load, 5000)
+            });
+        });
+    </script>
+    <script>
+        $(document).on('click', '.red-btn', function (e) {
+            e.preventDefault();
+            $this = $(this);
+            id = $this.attr('value');
+            if (confirm('Sure To Reject?')) {
+                $.ajax({
+                    url: "{% url 'reject' %}",
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        employee_id: id,
+                    },
+                    success: function (response) {
+                        if (response.message == 'success') {
+                            alert('Rejected successfully');
+                        }
+                    },
+                    error: function (response) {
+                        alert('Couldn\'t perform rejection');
+                    }
+                })
+            }
+        });
+    </script>
+    <script>
+        $(document).on('click', '.grn-btn', function (e) {
+            e.preventDefault();
+            $this = $(this);
+            id = $this.attr('value');
+            if (confirm('Sure To Approve?')) {
+                $.ajax({
+                    url: "{% url 'approve' %}",
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        employee_id: id,
+                    },
+                    success: function (response) {
+                        if (response.message == 'success') {
+                            alert('Approved successfully');
+                        }
+                    },
+                    error: function (response) {
+                        alert('Couldn\'t perform Approval');
+                    }
+                })
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <header class="overlay">
+        <nav class="navbar navbar-color">
+            <div class="contanier">
+                <a href="{% url 'Home'%}" class="logo">
+                    <span title="bitrex">
+                        <img class="img-adjusting" src="{%static 'Images/BitriX logo.png'%}" alt="bitrex">
+                    </span>
+                </a>
+                <div class="slogan-place">
+                    <span class="text contanier">
+                        <h5>
+
+                        </h5>
+                    </span>
+                </div>
+                <form method="GET" action="{% url 'Results'%}">
+                    <div class="search-container">
+                        <input type="text" name="search" placeholder="Search..." class="search-input">
+
+                        <button class="search-btn hide"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>
+                <div class="adj-width">
+                    <div class="contanier line">
+                        <div class="line2 adj-width">
+                            <hr class="w-100 mx" style="border-top-width: 0.5px; border-color: white;">
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-surf">
+                    <ul class="nav navbar-nav flex-grow-1">
+                        <li>
+                            <a class="nav-link active" href="{% url 'Home'%}">Home</a>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link " id="nav1" href="{% url 'AddEmployee'%}">Add Employee</a>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link " id="nav3" href="{%url 'VacationRequests'%}">Review
+                                Vacations</a>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link " id="nav4" href="{% url 'AboutUs'%}">About Us</a>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+    </header>
+    <section>
+        <h2 class="title">Vacation requests</h2>
+        <h4>Approve or reject the following according to the work-place code, the rejected ones will not be archived.
+        </h4>
+        <div class="vac-cards" id="container"></div>
+    </section>
+    <footer>
+        <p style="font-size: 24px; margin: 20px 0px;">All rights reserved &copy;</p>
+    </footer>
+</body>
+
+</html>

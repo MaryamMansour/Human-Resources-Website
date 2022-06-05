@@ -1,0 +1,362 @@
+/* Header Style */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Assistant', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.overlay {
+    z-index: 3301;
+    flex: 0 0 auto;
+    display: block;
+}
+
+.navbar {
+    padding-bottom: 0;
+    flex-flow: row nowrap;
+    box-shadow: 0px 10px 25px rgba(3 3 3/ 50%);
+    justify-content: flex-start;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0rem 1rem;
+    white-space: nowrap;
+}
+
+.navbar-color {
+    background-color: black;
+    background-image: linear-gradient(135deg, #04caf7 6%, #8dd1da 100%);
+}
+
+.contanier {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+    max-width: 1140px;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.logo {
+    padding-top: 0;
+    padding-bottom: 0;
+    flex: 0 0 auto;
+    max-width: 75%;
+    margin-right: 1.5rem;
+    font-size: 1.66666667rem;
+}
+
+.img-adjusting {
+    display: block;
+    width: 7rem;
+    height: 4.5rem;
+    max-width: 100%;
+    margin-top: -0.5rem;
+}
+
+.slogan-place {
+    margin-left: 0.2rem;
+    margin-right: auto;
+}
+
+.text {
+    position: relative;
+    display: block;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 30px;
+    margin-top: -1rem;
+}
+
+.q {
+    margin-left: auto;
+}
+
+.search-container {
+    background: #fff;
+    height: 30px;
+    border-radius: 30px;
+    padding: 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.8s;
+    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
+        -4px -4px 6px 0 rgba(116, 125, 136, .2),
+        inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
+        inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+
+.search-container:hover>.search-input {
+    width: 200px;
+}
+
+.search-container .search-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 0px;
+    font-weight: 500;
+    font-size: 16px;
+    transition: 0.8s;
+
+}
+
+.hide {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.search-container .search-btn .fas {
+    color: #5cbdbb;
+}
+
+@keyframes hoverShake {
+    0% {
+        transform: skew(0deg, 0deg);
+    }
+
+    25% {
+        transform: skew(5deg, 5deg);
+    }
+
+    75% {
+        transform: skew(-5deg, -5deg);
+    }
+
+    100% {
+        transform: skew(0deg, 0deg);
+    }
+}
+
+.search-container:hover {
+    animation: hoverShake 0.15s linear 3;
+}
+
+.adj-width {
+    width: 100%;
+}
+
+.line {
+    position: relative;
+    display: block;
+}
+
+.line2 {
+    line-height: 0;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.mx {
+    margin-left: auto;
+}
+
+.nav-surf {
+    display: flex !important;
+    flex-basis: auto;
+    min-width: 0;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.navbar-nav {
+    display: flex;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.nav-link {
+    display: block;
+    border-color: currentColor;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 1rem;
+    padding-top: 0rem;
+    padding-bottom: 1rem;
+    border-bottom: 0.5rem solid transparent;
+}
+
+.active {
+    display: block;
+    border-color: currentColor;
+    border-bottom: 0.5rem solid black;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+
+/* Body Style */
+.Page-Title {
+    display: flex;
+    justify-content: center;
+    font-size: larger;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    top: 40px;
+}
+
+.Empty-Results {
+    margin-top: -300px;
+    margin-bottom: 285px;
+    margin-left: 500px;
+    /* text-align: center; */
+    font-size: 20px;
+    display: flex;
+    padding-top: 10px;
+    /* padding: 5px; */
+    justify-content: center;
+    width: 540px;
+    height: 60px;
+    background-color: #04caf7;
+    color: black;
+    border-radius: 25px;
+    /* margin: 40px; */
+}
+
+.Content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 48.5vh;
+}
+
+
+
+h3 {
+    text-align: center;
+    margin-top: -5px 0px 0px 15px;
+}
+
+.Card {
+    background: linear-gradient(135deg, #04caf7 6%, #8dd1da 100%);
+    color: black;
+    width: 480px;
+    height: 550px;
+    box-shadow: 0 -5px 25px rgba(1 1 1 / 25%);
+    border-radius: 25px;
+    padding: 15px;
+    margin: 15px;
+}
+
+.Employee-Data {
+    display: flex;
+    justify-content: center;
+    align-content: space-between;
+    margin: 20px 5px 10px;
+}
+
+.First-Six-Divs {
+    margin-left: 13px;
+}
+
+.Second-Six-Div {
+    margin-left: 50px;
+}
+
+.Employee-Data p {
+    margin: 10px;
+}
+
+.Card p {
+    margin-left: 12px;
+}
+
+.Buttons {
+    display: flex;
+    justify-content: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.Buttons button:hover {
+    background-color: rgba(128, 128, 128, 0.849);
+}
+
+.Buttons button:active {
+    transform: scale(0.95);
+}
+
+.Buttons button {
+    margin: 48px 10px;
+    width: 120px;
+    max-width: 120px;
+    height: 30px;
+    max-height: 30px;
+    border: 1px solid rgb(32, 185, 185);
+    border-radius: 25px;
+    padding: 10;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 40px;
+}
+
+#Edit {
+    margin-top: -30px;
+}
+
+#Submit-Vaccation {
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+
+.Employee-Data input,
+select {
+    padding: 1.5px 4px;
+    border: 1px solid white;
+    border-radius: 9px;
+    transition: background 0.4s, border-color 0.4s;
+    background-color: white;
+}
+
+.Employee-Data input:focus,
+select:focus {
+    outline: none;
+    border-color: aqua;
+    background-color: rgba(128, 128, 128, 0.200);
+}
+
+.Employee-Data input {
+    width: 180px;
+    max-width: 180px;
+    height: 25px;
+    max-height: 25px;
+}
+
+/* Footer Style */
+.footer {
+    background-color: #8dd1da;
+    color: white;
+    padding: 20px;
+    box-shadow: 0px 10px 25px rgba(1 1 1/ 60%);
+    display: flex;
+    justify-content: center;
+}

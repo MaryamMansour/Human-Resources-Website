@@ -1,0 +1,76 @@
+{%load static%}
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Projects</title>
+  <link rel="stylesheet" href="{%static 'CSS/AllProjectsPageStyle.css'%}">
+  <script src="{%static 'JS/AllProjectsPageScript.js'%}"></script>
+
+</head>
+
+<body>
+
+  <header>
+    <a href="#base" class="logo">Our Projects</a>
+    <nav class="navigation">
+      <a href="{% url 'Home'%}">Human Resources</a>
+      <a href="#Student Affairs">Student Affairs</a>
+      <a href="#Higher studies">Higher studies </a>
+      <a href="#Laboratory tracking">Laboratory tracking</a>
+    </nav>
+  </header>
+  <br>
+  <br><br><br>
+
+
+  <section class="base" id="base">
+    <div>
+      <div class="main">
+        <h3>Welcome To</h3>
+        <h2>The Projects page</h2>
+      </div>
+      <a href="#projects" class="base-1">View all Projects<br></a>
+    </div>
+
+  </section>
+
+  <section class="sections" id="projects">
+    <div class="content">
+      <div class=" card">
+        <div class="info" id="Human Resources">
+          <a id="myLink" href="{% url 'Home'%}">Human Resources</a>
+          <p>this is a human recources website to help you</p>
+        </div>
+      </div>
+
+      <div class=" card">
+        <div class="info" id="Student Affairs">
+          <h3> Student Affairs</h3>
+          <p>this is a Student Affairs website to help you</p>
+        </div>
+      </div>
+
+      <div class=" card">
+        <div class="info" id="Higher studies">
+          <h3> Higher studies</h3>
+          <p>this is a Higher studies website to help you</p>
+        </div>
+      </div>
+      <div class=" card">
+        <div class="info" id="Laboratory tracking">
+          <h3>Laboratory tracking</h3>
+          <p>this is a Laboratory tracking website to help you</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>This is all the recommended projects, Please go to The <a>Human Resources</a> one</p>
+  </footer>
+
+
+
+  </div>

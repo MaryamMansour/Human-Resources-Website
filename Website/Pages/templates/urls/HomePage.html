@@ -1,0 +1,236 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'CSS/HomePageStyle.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital@1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5f8f029d02.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="{%static 'JS/HomePageScript.js'%}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+
+    <title>Home Page</title>
+</head>
+
+<body>
+    <header class="overlay">
+        <nav class="navbar navbar-color">
+            <div class="contanier">
+                <a href="{% url 'Home'%}" class="logo">
+                    <span title="bitrex">
+                        <img class="img-adjusting" src="{%static 'Images/BitriX logo.png'%}" alt="bitrex">
+                    </span>
+                </a>
+                <div class="slogan-place">
+                    <span class="text contanier">
+                        <h5>
+
+                        </h5>
+                    </span>
+                </div>
+                <form method="GET" action="{% url 'Results'%}">
+                    <div class="search-container">
+                        <input type="text" name="search" placeholder="Search..." class="search-input">
+
+                        <button class="search-btn hide"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>
+                <div class="adj-width">
+                    <div class="contanier line">
+                        <div class="line2 adj-width">
+                            <hr class="w-100 mx" style="border-top-width: 0.5px; border-color: white;">
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-surf">
+                    <ul class="nav navbar-nav flex-grow-1">
+                        <li>
+                            <a class="nav-link active" href="{% url 'Home'%}">Home</a>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link " id="nav1" href="{% url 'AddEmployee'%}">Add Employee</a>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link " id="nav3" href="{%url 'VacationRequests'%}">Review
+                                Vacations</a>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link " id="nav4" href="{% url 'AboutUs'%}">About Us</a>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+    </header>
+    <div>
+        <div class="main">
+            <div class="mmm">
+                <h2 class="sec">Making The Difference</h2>
+                <div class="sec2">Our mission is to give employees the best experience.<br>
+                    Extensive documentation & guides, an active community,<br>
+                    24/7 support make it a pleasure to work with us.
+                </div>
+            </div>
+        </div>
+        <h2 class="h2">Overview </h2>
+        <div class="container">
+            <div class="card">
+                <div class="p">
+                    <p>Sick leave</p>
+                </div>
+                <div>
+                    <div>
+                        <p class="mar"><b>Available days</b>
+                        </p>
+                        <hr>
+                    </div>
+                    <div class="info">
+                        <div style="margin: 10px; margin-right: 10px;"> Available <br>unlim.</div>
+                        <div style="margin: 10px;">Taken <br><p>{{sickLeave}}</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="p">
+                    <p>Official holidays</p>
+                </div>
+                <div>
+                    <div>
+                        <p class="mar"><b>Available days</b>
+                        </p>
+                        <hr>
+                    </div>
+                    <div class="info">
+                        <div style="margin: 10px;"> Coming Up <br> <p>{{comingUp}}</p> </div>
+                        <div style="margin: 10px;">Taken <br><p>{{taken}}</p> </div>
+                        <div style="margin: 10px;">Planned <br> <p>{{planned2}}</p> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="p">
+                    <p>Important meetings</p>
+                </div>
+                <div>
+                    <div>
+                        <p class="mar"><b>Available days</b>
+                        </p>
+                        <hr>
+                    </div>
+                    <div class="info">
+                        <div style="margin: 10px;">Declared <br><p id = "declared">{{declared}}</p> </div>
+                        <div style="margin: 10px;">Taken <br> <p id = "taken">{{taken}}</p> </div>
+                        <div style="margin: 10px;">planned <br> <p id = "planned">{{plannedMeeting}}</p> </div>
+                    </div>
+                </div>
+            </div class="p">
+            <div class="card">
+                <div class="p">
+                    <p>Training Days</p>
+                </div>
+                <div>
+                    <div>
+                        <p class="mar"><b>Available days</b>
+                        </p>
+                        <hr>
+                    </div>
+                    <div class="info">
+                        <div style="margin: 10px;"> Available<br><p>{{available}}</p></div>
+                        <div style="margin: 10px;"> taken <br><p>{{taken2}}</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contanier">
+        <div class="row">
+            <div class="pt">
+                <h2 class="h3">Unique Experience To Lead Employees</h2>
+                <hr class="w-100 mx-auto"
+                    style="border-top-width: 1px; border-top-style: solid; border-top-color: rgba(0, 0, 0, 0) !important;">
+                <div">
+                    <p class="desc"> Our HR managers work with managers from different<br>levels to track and analyze
+                        employee performance and be able to provide feedback and guidance to the employee.<br> Goals and
+                        objectives—both long- and short-term ones—are to be clear and transparent, just as the criteria
+                        for their successful completion</p>
+            </div>
+            <div class="pt2">
+                <img src="{%static 'Images/1017.jpg'%}" class="img" alt="HR role ">
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="contanier2">
+        <div class="row2">
+            <div class="pt">
+                <div>
+                    <div>
+                        <div class="card">
+                            <div class="p">
+                                <p>Vacations</p>
+                            </div>
+                            <div>
+                                <div>
+                                    <p class="mar"><b>Statistics</b>
+                                    </p>
+                                    <hr>
+                                </div>
+                                <div class="info">
+                                    <div style="margin: 10px;"> Approved Vacations <br> <p>{{Approved}}</p> </div>
+                                    <div style="margin: 10px;">Accepted <br><p>{{Accepted}}</p> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pt2">
+                <section class="section">
+                    <div class="anoounce">
+                        <h3>Announcements and Publications</h3>
+                        <li>
+                            <p>Aiming to encourage students and graduates finding their own way to suitable jobs,
+                                <br />the office of the Human Resources has held the "Your Secret To Hiring" event,
+                                which was held in Cairo University.<br>
+                            </p>
+                        </li>
+
+                        <li>...</li>
+                    </div>
+            </div>
+
+            </section>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <footer class="footer">
+        <p style="font-size: 24px; margin: 20px 0px;">All rights reserved &copy;</p>
+    </footer>
+
+</body>
+
+</html>

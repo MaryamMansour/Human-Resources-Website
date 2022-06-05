@@ -1,0 +1,232 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital@1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5f8f029d02.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <title>Edit Employee</title>
+    <link rel="stylesheet" href="{%static 'CSS/EditEmployeeStyle.css'%}">
+    <script src="{%static 'JS/EditEmployeeScript.js'%}"></script>
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="overlay">
+        <nav class="navbar navbar-color">
+            <div class="contanier">
+                <a href="{% url 'Home'%}" class="logo">
+                    <span title="bitrex">
+                        <img class="img-adjusting" src="{%static 'Images/BitriX logo.png'%}" alt="bitrex">
+                    </span>
+                </a>
+                <div class="slogan-place">
+                    <span class="text contanier">
+                        <h5>
+
+                        </h5>
+                    </span>
+                </div>
+                <form method="GET" action="{% url 'Results'%}">
+                    <div class="search-container">
+                        <input type="text" name="search" placeholder="Search..." class="search-input">
+
+                        <button class="search-btn hide"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>
+                <div class="adj-width">
+                    <div class="contanier line">
+                        <div class="line2 adj-width">
+                            <hr class="w-100 mx" style="border-top-width: 0.5px; border-color: white;">
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-surf">
+                    <ul class="nav navbar-nav flex-grow-1">
+                        <li>
+                            <a class="nav-link active" href="{% url 'Home'%}">Home</a>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link " id="nav1" href="{% url 'AddEmployee'%}">Add Employee</a>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link " id="nav3" href="{%url 'VacationRequests'%}">Review
+                                Vacations</a>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link " id="nav4" href="{% url 'AboutUs'%}">About Us</a>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <!-- Form -->
+    <section>
+        <div class="Form-Container">
+            {% for element in Info %}
+            <form method="POST" id="Edit-Form" >
+                <!--</form>action="#">-->
+                {% csrf_token %}
+                <div class="Avatar-Title">
+                    <img src="{%static 'Images/Avatar.png'%}" alt="" id="Avatar">
+                    <p id="Form-Title">Edit Employee</p>
+                </div>
+                <!-- information of the employee -->
+                <div class="Employee-Data">
+                    
+                    <div class="First-Six-Divs">
+                        <div class="Name">
+                            <p>Name</p>
+                            <input type="text" name="Employee-Name" id="Employee-Name" required autofocus class="focusName"
+                                value={{element.name}} >
+                        </div>
+
+                        <div class="E-mail">
+                            <p>E-mail</p>
+                            <input type="email" name="Employee-E-mail" id="Employee-E-mail" required
+                                value={{element.mail}} class="focusName">
+                        </div>
+
+                        <div class="Date-Of-Birth">
+                            <p>Date of Birth</p>
+                            <input type="text" name="Date-Of-Birth" id="Date-Of-Birth" required class="focusName" onfocus="(this.type='date')" onblur="this.type='text'"
+                            placeholder="{{element.dateofBirth}}" value={{element.dateofBirth |date:'Y-m-d'}}>
+                        </div>
+                        <div class="Gender">
+                            <p>Gender</p>
+                            <select name="Gender" id="Gender" required>
+                                <option value={{element.gender}} selected hidden>{{element.gender}}</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+
+                        <div class="Available-Vacations">
+                            <p>Available Vacations</p>
+                            <input type="number" name="Available-Vacations" id="Available-Vacations" min="0"
+                                max="99999999999" class="focusName" value={{element.availablevac}}>
+                        </div>
+
+                        <div class="Salary">
+                            <p>Salary</p>
+                            <input type="number" name="Salary" id="Salary" required
+                                min="0" max="99999999999" class="focusName" value={{element.salary}}>
+                        </div>
+
+                    </div>
+
+                    <div class="Second-Six-Div">
+                        <div class="ID">
+                            <p>ID</p>
+                            <input type="number" name="IDD" id="ID" required min="0"
+                                max="99999999999" class="focusName" value={{element.ID}} readonly>
+                        </div>
+
+                        <div class="Phone-Number">
+                            <p>Phone Number (optional)</p>
+                            {% if element.phoneNum %}
+                            <input type="number" name="Phone-Number" id="Phone-Number" value={{element.phoneNum}}
+                                min="0" max="99999999999" minlength="11" maxlength="11" class="focusName">
+                            {% endif%}
+                            {% if element.phoneNum == ""%}
+                            <input type="number" name="Phone-Number" id="Phone-Number" placeholder="No Phone Number"
+                                min="0" max="99999999999" minlength="11" maxlength="11" class="focusName">
+                            {% endif%}
+
+                        </div>
+
+                        <div class="Address">
+                            <p>Address (optional)</p>
+                            {% if element.address %}
+                            <input type="text" name="Address" id="Address" class="focusName" value={{element.address}}>
+                            {% endif%}
+                            {% if element.address == "" %}
+                            <input type="text" name="Address" id="Address" class="focusName" value="No Address">
+                            {% endif%}
+                        </div>
+                        
+                        <div class="Martial-Status">
+                            <p>Martial Status</p>
+                            <select name="Martial-Status" id="Martial-Status" required>
+                                <option value="{{element.maritalstatus}}" selected hidden>{{element.maritalstatus}}</option>
+                                    <option value="Single">Single</option>
+                                    <option value="Married">Married</option>
+                                </select>
+                            </div>
+                            
+                            <div class="Approved-Vacations" class="focusName">
+                                <p>Approved Vacations</p>
+                                <input type="number" name="Approved-Vacations" id="Approved-Vacations" min="0"
+                                max="99999999999" value={{element.approvedvac}}>
+                            </div>
+                            
+                            <div class="Buttons">
+                                <button type="submit" name="Update" id="Update">Update</button>
+                                <button name="Delete" onclick="return confirm('Are you sure you wish to delete?');"  id="Delete" >Delete</button>
+                                <!--Confirmation msg-->
+                            </div>
+                            <div class="Validation-Message Fail">
+                                <p id="Validation-Message"></p>
+                            </div>
+                            {% if messages %}
+                            {% for message in messages %}
+                            <div class="Input-Error">
+                            <br>
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                            <div class="Alert-Message Validation-Message Fail" id="msg" role="alert">
+                                {{ message }}
+                            </div>
+                            {% endif %}
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                            <div class="Alert-Message Validation-Message Success" id="msg" role="alert">
+                                {{ message }}
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    
+                </div>
+            </form>
+            {% endfor %}
+            
+        </div>
+        <script>
+            var info_messages = document.getElementsByClassName('Alert-Message');
+            setTimeout(function () {
+                for (var i = 0; i < info_messages.length; i++) {
+                    info_messages[i].setAttribute('style', 'display:none !important');
+                }
+            }, 3000);
+        </script>
+    </section>
+    <footer class="footer">
+        <p style="font-size: 24px; margin: 20px 0px;">All rights reserved &copy;</p>
+    </footer>
+</body>
+
+</html>

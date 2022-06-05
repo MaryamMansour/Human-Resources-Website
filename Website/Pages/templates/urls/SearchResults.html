@@ -1,0 +1,234 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital@1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5f8f029d02.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="{%static 'CSS/SearchResultsStyle.css'%}">
+    <script src="{%static 'JS/SearchResultsScript.js'%}"></script>
+
+    <title>Search Results</title>
+</head>
+
+<body>
+    <!-- *********************************************************** Header *****************************************-->
+    <header class="overlay">
+        <nav class="navbar navbar-color">
+            <div class="contanier">
+                <a href="{% url 'Home'%}" class="logo">
+                    <span title="bitrex">
+                        <img class="img-adjusting" src="{%static 'Images/BitriX logo.png'%}" alt="bitrex">
+                    </span>
+                </a>
+                <div class="slogan-place">
+                    <span class="text contanier">
+                        <h5>
+
+                        </h5>
+                    </span>
+                </div>
+                <form method="GET" action="{% url 'Results'%}">
+                    <div class="search-container">
+                        <input type="text" name="search" placeholder="Search..." class="search-input">
+
+                        <button class="search-btn hide"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>
+                <div class="adj-width">
+                    <div class="contanier line">
+                        <div class="line2 adj-width">
+                            <hr class="w-100 mx" style="border-top-width: 0.5px; border-color: white;">
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-surf">
+                    <ul class="nav navbar-nav flex-grow-1">
+                        <li>
+                            <a class="nav-link active" href="{% url 'Home'%}">Home</a>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link " id="nav1" href="{% url 'AddEmployee'%}">Add Employee</a>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link " id="nav3" href="{%url 'VacationRequests'%}">Review
+                                Vacations</a>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link " id="nav4" href="{% url 'AboutUs'%}">About Us</a>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <section class="Cards">
+        <h1 class="Page-Title"> Search Results!</h1>
+
+        <div class="Content">
+            <!--Cards container-->
+            {% for element in results %}
+            <form method="POST" action="{% url 'EditEmployee'%}">
+                {% csrf_token %}
+                <div class="Card">
+                    <div class="Employee-Data">
+
+                        <div class="First-Six-Divs">
+                            <div class="Name">
+                                <p>Name</p>
+                                <input type="text" name="Employee-Name" id="Employee-Name" class="focusName"
+                                    value={{element.name}} readonly>
+                            </div>
+
+                            <div class="E-mail">
+                                <p>E-mail</p>
+                                <input type="email" name="Employee-E-mail" id="Employee-E-mail" class="focusName"
+                                    value={{element.mail}} readonly>
+                            </div>
+
+                            <div class="Date-Of-Birth">
+                                <p>Date of Birth</p>
+                                <input type="text" name="Date-Of-Birth" id="Date-Of-Birth" class="focusName"
+                                    value="{{element.dateofBirth}}" readonly>
+                            </div>
+
+                            <div class="Gender">
+                                <p>Gender</p>
+                                <input name="Gender" id="Gender" value={{element.gender}} readonly>
+
+                                </input>
+                            </div>
+
+                            <div class="Available-Vacations">
+                                <p>Available Vacations</p>
+                                <input type="text" name="Available-Vacations" id="Available-Vacations" class="focusName"
+                                    value={{element.availablevac}} readonly>
+                            </div>
+
+                            <div class="Salary">
+                                <p>Salary</p>
+                                <input type="number" name="Salary" id="Salary" class="focusName"
+                                    value={{element.salary}} readonly>
+                            </div>
+
+                        </div>
+
+                        <div class="Second-Six-Div">
+                            <div class="ID">
+                                <p>ID</p>
+                                <input type="number" name="IDD" id="ID" class="focusName" value={{element.ID}} readonly>
+                            </div>
+
+                            <div class="Phone-Number">
+                                <p>Phone Number</p>
+                                {% if element.phoneNum %}
+                                <input type="text" name="Phone-Number" id="Phone-Number" maxlength="11"
+                                    class="focusName" value={{element.phoneNum}} readonly>
+                                {% endif %}
+                                {% if element.phoneNum == "" %}
+                                <input type="text" name="Phone-Number" id="Phone-Number" maxlength="11"
+                                    class="focusName" value="No Phone Number" readonly>
+                                {% endif %}
+                            </div>
+
+                            <div class="Address">
+                                <p>Address</p>
+                                {% if element.address %}
+                                <input type="text" name="Address" id="Address" class="focusName"
+                                    value={{element.address}} readonly>
+                                {% endif %}
+
+                                {% if element.address == "" %}
+                                <input type="text" name="Address" id="Address" class="focusName" value="No Address"
+                                    readonly>
+                                {% endif %}
+                            </div>
+
+                            <div class="Martial-Status">
+                                <p>Martial Status</p>
+                                <input name="Martial-Status" id="Martial-Status" value={{element.maritalstatus}}
+                                    readonly>
+
+                                </input>
+                            </div>
+
+                            <div class="Approved-Vacations" class="focusName">
+                                <p>Approved Vacations</p>
+                                <input type="number" name="Approved-Vacations" id="Approved-Vacations"
+                                    value={{element.approvedvac}} readonly>
+                            </div>
+
+                            <div class="Buttons">
+                                <a href="{% url 'VacationForm'%}">
+                                    <button type="submit" name="Vacation" id="Submit-Vaccation">Submit
+                                        Vaccation</button>
+                                </a>
+                                <a href="{% url 'EditEmployee'%}">
+                                    <button type="submit" id="Edit" name="Edit">Edit Employee</button>
+                                </a>
+                            </div>
+                            <div class="Validation-Message Fail">
+                                <p id="Validation-Message"></p>
+                            </div>
+                            {% if messages %}
+                            {% for message in messages %}
+                            <div class="Input-Error">
+                                <br>
+                                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                                <div class="Alert-Message Validation-Message Fail" id="msg" role="alert">
+                                    {{ message }}
+                                </div>
+                                {% endif %}
+                                {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                                <div class="Alert-Message Validation-Message Success" id="msg" role="alert">
+                                    {{ message }}
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+            {% endfor %}
+        </div>
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+        <div class="Empty-Results" role="alert"> {{ message }}</div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </section>
+
+
+    <footer class="footer">
+        <p style="font-size: 24px; margin: 20px 0px;">All rights reserved &copy;</p>
+    </footer>
+</body>
+
+</html>

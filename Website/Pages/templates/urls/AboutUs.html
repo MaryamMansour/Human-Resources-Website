@@ -1,0 +1,94 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="{%static 'CSS/AboutUsStyle.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital@1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5f8f029d02.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="{%static 'JS/AboutUsScript.js'%}"></script>
+</head>
+
+<body>
+    <header class="overlay">
+        <nav class="navbar navbar-color">
+            <div class="contanier">
+                <a href="{% url 'Home'%}" class="logo">
+                    <span title="bitrex">
+                        <img class="img-adjusting" src="{%static 'Images/BitriX logo.png'%}" alt="bitrex">
+                    </span>
+                </a>
+                <div class="slogan-place">
+                    <span class="text contanier">
+                        <h5>
+
+                        </h5>
+                    </span>
+                </div>
+                <form method="GET" action="{% url 'Results'%}">
+                    <div class="search-container">
+                        <input type="text" name="search" placeholder="Search..." class="search-input">
+
+                        <button class="search-btn hide"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>
+                <div class="adj-width">
+                    <div class="contanier line">
+                        <div class="line2 adj-width">
+                            <hr class="w-100 mx" style="border-top-width: 0.5px; border-color: white;">
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-surf">
+                    <ul class="nav navbar-nav flex-grow-1">
+                        <li>
+                            <a class="nav-link active" href="{% url 'Home'%}">Home</a>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link " id="nav1" href="{% url 'AddEmployee'%}">Add Employee</a>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link " id="nav3" href="{%url 'VacationRequests'%}">Review
+                                Vacations</a>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link " id="nav4" href="{% url 'AboutUs'%}">About Us</a>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+    </header>
+    <section>
+        <h1>About us</h1>
+        <p>This is a leading HR-services solution, the BitriX system helps
+            human resource workers and recruiters manage employees information
+            effortlessly, using a collection of art-grade tools, which leads
+            to a refined and improved organizational perrformance.
+        </p>
+    </section>
+    <footer>
+        <p style="font-size: 24px; margin: 20px 0px;">All rights reserved &copy;</p>
+    </footer>
+</body>
+
+</html>

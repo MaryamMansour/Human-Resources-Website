@@ -1,0 +1,164 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vacation Form</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital@1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5f8f029d02.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <title>Add New Employee</title>
+    <link rel="stylesheet" href="{%static 'CSS/VacationFormStyle.css'%}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+
+
+<body>
+
+    <!--Navigation bar-->
+    <header class="overlay">
+        <nav class="navbar navbar-color">
+            <div class="contanier">
+                <a href="{% url 'Home'%}" class="logo">
+                    <span title="bitrex">
+                        <img class="img-adjusting" src="{%static 'Images/BitriX logo.png'%}" alt="bitrex">
+                    </span>
+                </a>
+                <div class="slogan-place">
+                    <span class="text contanier">
+                        <h5>
+
+                        </h5>
+                    </span>
+                </div>
+                <form method="GET" action="{% url 'Results'%}">
+                    <div class="search-container">
+                        <input type="text" name="search" placeholder="Search..." class="search-input">
+
+                        <button class="search-btn hide"><i class="fas fa-search"></i></button>
+                    </div>
+                </form>
+                <div class="adj-width">
+                    <div class="contanier line">
+                        <div class="line2 adj-width">
+                            <hr class="w-100 mx" style="border-top-width: 0.5px; border-color: white;">
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-surf">
+                    <ul class="nav navbar-nav flex-grow-1">
+                        <li>
+                            <a class="nav-link active" href="{% url 'Home'%}">Home</a>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link " id="nav1" href="{% url 'AddEmployee'%}">Add Employee</a>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link " id="nav3" href="{%url 'VacationRequests'%}">Review
+                                Vacations</a>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link " id="nav4" href="{% url 'AboutUs'%}">About Us</a>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+    </header>
+    <!-- <body style="background-color: aqua; color:black;"> -->
+        {% for element in Info %}
+        <form class="vacation-form" method = 'POST' onsubmit="validateForm()" id="vacation-form" >
+            {% csrf_token %}
+            <h1 class="title">Vacation form</h1>
+            <div class="EmployeeName" Name="eName">
+                <label for="emName">Name:</label>
+                <input class="input" type="text" name="emName" value={{element.name}} readonly placeholder="Employee Name" id="emName" maxlength="100" required autofocus>
+            </div>
+            
+            <div class="EmployeeID">
+                <label for="emID">ID:</label>
+                <input class="input" type="number" name = 'empID' value={{element.ID}} readonly placeholder="Employee ID" id="emID" min="1" max="9999999" required>
+            </div>
+    
+            <div class="StartDate">
+                <label for="sd">Start date:</label>
+                <input class="input" type="date" name="StartDate" value="2022-05-26" id="sd" min="2022-01-01"  required 	>  
+                
+                <!-- mimum & max deal  ------------------------------------------------------------------------->
+           
+            </div>
+            <br>
+    
+            <div class="EndDate">
+                <label for="ed">End date:</label>
+                <input class="input" type="date" name="EndDate" value="2022-05-30" id="ed" min="2022-01-01" required >
+            </div>
+            <br>
+            
+            <div class="Reason">
+                
+                <label for="rsn">Reason:</label>
+                <textarea class="input" name="Reason" id="rsn"  cols="30" rows="10" required></textarea>
+            </div>
+    
+            <div class="button">
+                <input class="input" type="submit"  value="Save">
+            </div>
+
+            <div class="Confirmation-Message">
+                <br>
+                <p id="Confirmation-Message"></p>
+            </div>
+
+        </form>
+        {% endfor%}
+
+    <footer class="footer">
+        <p style="font-size: 24px; margin: 20px 0px;">All rights reserved &copy;</p>
+    </footer>
+
+
+    <script src="{%static 'JS/VacationFormScript.js'%}"></script>
+    <script>
+        $("#vacation-form").submit(function (e) {
+            e.preventDefault();
+            var serializedData = $(this).serialize();
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'VacationForm' %}",
+                dataType: 'text',
+                data: serializedData,
+                success: function (response) {
+                    alert(response)
+                },
+                error: function (response) {
+                    alert(response)
+                }
+            })
+        });
+    </script>
+    </script>
+</body>
+
+</html>

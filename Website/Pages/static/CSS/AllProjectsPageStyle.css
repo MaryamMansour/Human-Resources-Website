@@ -1,0 +1,162 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lucida Console", "Courier New", monospace;
+    scroll-behavior: smooth;
+}
+
+header {
+
+    background-image: linear-gradient(135deg, #04caf7 6%, #8dd1da 100%);
+    width: 100%;
+    box-shadow: 10px 10px 25px rgba(1 1 1/ 40%);
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 150px;
+}
+
+.logo {
+    text-decoration: none;
+    color: #252b37;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: #252b37;
+    font-size: 15px;
+    font-weight: 500;
+    padding-left: 50px;
+}
+
+.navigation a:hover {
+    color: #b5b55b;
+}
+
+section {
+    padding: 100px 200px;
+}
+
+.base {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+
+    background: url("../Images/AllProjectsPageBackground.jpg");
+    background-size: cover;
+    background-position: 50%;
+
+}
+
+.main {
+    position: absolute;
+    width: 20%;
+    height: 60%;
+    color: rgb(97, 93, 93);
+    background-color: #ffffffa4;
+    ;
+    padding-top: 40px;
+    box-shadow: 12px 10px 25px rgba(1 1 1/ 70%);
+}
+
+.main h3 {
+    padding-left: 40px;
+    font-size: 40px;
+    text-align: center;
+}
+
+.main h2 {
+    padding-left: 80px;
+    padding-top: 50px;
+    color: rgb(78, 78, 78);
+    font-size: 60px;
+    font-weight: 900;
+}
+
+.base-1 {
+    color: white;
+    background-color: #7ba7aeb6;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 200;
+    display: inline-block;
+    padding: 15px 40px;
+    letter-spacing: 2px;
+    margin-top: 350px;
+    margin-left: 320px;
+}
+
+.base-1:hover {
+    color: black;
+    background-color: #7bb9c2;
+    box-shadow: 0px 10px 25px rgba(1 1 1/ 30%);
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.card {
+    color: white;
+    background-color: #8dd1da;
+    width: 200px;
+    padding: 50px 20px;
+    margin: 80px 30px;
+    transition: 1s ease;
+}
+
+.card:hover {
+
+    color: black;
+    background-image: linear-gradient(135deg, #04caf7 3%, #8dd1da 100%);
+    box-shadow: 0px 10px 25px rgba(1 1 1/ 60%);
+    transform: scale(0.95);
+}
+
+.info a {
+    font-size: 25px;
+    color: #6b7a7c;
+    font-weight: 200;
+    align-items: center;
+    padding: 10px 10px;
+    margin-bottom: 30px;
+    text-decoration: none;
+}
+
+.info h3 {
+    font-size: 25px;
+    font-weight: 200;
+    align-items: center;
+    padding: 10px 10px;
+    margin-bottom: 30px;
+}
+
+.info p {
+    align-items: center;
+    padding: 10px 20px;
+    margin: 30px 10px;
+}
+
+.footer {
+    background-color: #8dd1da;
+    color: white;
+    padding: 20px;
+    box-shadow: 0px 10px 25px rgba(1 1 1/ 60%);
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer a {
+    color: #6b7a7c;
+    font-weight: 200;
+    text-decoration: none;
+}
